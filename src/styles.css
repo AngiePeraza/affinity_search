@@ -16,7 +16,7 @@ hr {
     border-color: white;
 }
 
-.puntero {
+.pointer {
     cursor: pointer;
 }
 
@@ -32,6 +32,11 @@ hr {
 
 .badge {
     margin-left: 5px;
+}
+
+.badge:hover {
+    -webkit-transform: scale(1.04);
+    background: #0f5dae;
 }
 
 .btn-outline-success {
@@ -71,4 +76,10 @@ hr {
 
 .fadeIn {
     animation-name: fadeIn;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:not( :hover ) {
+    background-color: #383B40;
+    color: #CDDC39;
+    border-color: unset;
 }

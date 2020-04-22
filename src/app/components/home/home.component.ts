@@ -9,12 +9,27 @@ import { TorreService } from '../../services/torre.service';
 export class HomeComponent {
 
   bio: any = {};
+  selectedStrength: string = 'Click on one of your strengths';
+  selectedLevel: string = '';
 
   constructor( private torre: TorreService ) {
     this.torre.getBio().subscribe((data: any) => {
       console.log(data);
       this.bio = data;
     });
+  }
+
+  setSkill( skill: any ) {
+    this.selectedStrength = skill.textContent;
+  }
+
+  setLevel( level: string ) {
+    this.selectedLevel = level;
+  }
+
+  searchBySkillLevel() {
+    console.log('skill: ', this.selectedStrength);
+    console.log('level: ', this.selectedLevel);
   }
 
 }
