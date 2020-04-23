@@ -39,7 +39,7 @@ export class SearchComponent {
     this.people = [];
     let languages = [];
     for( let lang of this.bio.languages ) {
-      let obj = { language: { term: lang.language, fluency: languages.fluency } };
+      let obj = { language: { term: lang.language, fluency: lang.fluency } };
       languages.push(obj);
     }
   
