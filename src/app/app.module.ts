@@ -15,6 +15,7 @@ import { HomeComponent } from './components/home/home.component';
 // Import Routes
 import { ROUTES } from './app.routes';
 import { NoimagePipe } from './pipes/noimage.pipe';
+import { HasValuePipe } from './pipes/has-value.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NoimagePipe } from './pipes/noimage.pipe';
     BioComponent,
     OpportunityComponent,
     HomeComponent,
-    NoimagePipe
+    NoimagePipe,
+    HasValuePipe
   ],
   imports: [
     BrowserModule,

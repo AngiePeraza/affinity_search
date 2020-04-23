@@ -4,10 +4,10 @@
         <div class="card mb-3">
             <div class="row no-gutters">
                 <div class="col-md-4 card-img">
-                    <img [src]="bio.person.pictureThumbnail" class="card-img-top" [alt]="bio.person.name">
+                    <img [src]="bio | hasValue:'person':'' | hasValue:'pictureThumbnail':'assets/img/noimage.png'" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title">{{ bio.person.name }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ bio.person.professionalHeadline }}</h6>
+                        <h5 class="card-title">{{ bio | hasValue:'person':'' | hasValue:'name':'' }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ bio | hasValue:'person':'' | hasValue:'professionalHeadline':'' }}</h6>
                     </div>
                 </div>
 
@@ -74,7 +74,15 @@
                         *ngFor="let skill of opportunity.skills">
                         {{ skill.name }}
                     </span>
-                </p>                
+                </p>  
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Compesation <small class="text-muted">(min)</small>:  {{ opportunity.compensation | hasValue:'data':'' | hasValue:'currency':'' }}{{ opportunity.compensation | hasValue:'data':'' | hasValue:'minAmount':'To be define' }}</li>                    
+                    <li class="list-group-item">
+                        <svg class="bi bi-geo-alt" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 002 6c0 4.314 6 10 6 10zm0-7a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+                      </svg>
+                      Location: {{ opportunity | hasValue:'locations':'To be define' }} </li>
+                </ul>              
             </div>
         </div>
     </div>
