@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TorreService } from '../../services/torre.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -13,8 +14,14 @@ export class SearchComponent {
   skills: any[] = [];
   people: any[] = [];
   search = false;
+  bio: any = {};
+  username: string = 'lorep19';
 
-  constructor( private torre: TorreService ) { }
+  constructor( private torre: TorreService, private router: Router ) {
+    this.torre.getBio( this.username ).subscribe((data: any) => {
+      this.bio = data;
+    });
+  }
 
   setRoles( $event ) {
     this.search = false;
@@ -30,18 +37,26 @@ export class SearchComponent {
 
   searchPeopleBySkills() {
     this.people = [];
+    let languages = [];
+    for( let lang of this.bio.languages ) {
+      let obj = { language: { term: lang.language, fluency: languages.fluency } };
+      languages.push(obj);
+    }
+  
     for( let skill of this.skills ) {
-      this.torre.searchPeopleBySkill( skill, this.selectedExperience ).subscribe((data: any) => {
-        console.log(data);
+      this.torre.searchPeopleBySkill( skill, this.selectedExperience, languages ).subscribe((data: any) => {
         let obj = {
           'skill': skill,
           'results': data.results
         };
         this.people.push(obj);
         this.search = true;
-        console.log(this.people);
       });
     }
+  }
+
+  seeBio( username ) {
+    this.router.navigate([ '/bio', username ]);
   }
 
 }

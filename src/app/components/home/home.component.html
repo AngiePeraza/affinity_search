@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row animated fadeIn">
     <div class="col-md-8">
         <div class="card mb-3">
             <div class="row no-gutters">
@@ -54,7 +54,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row animated fadeIn">
     <div class="col-md-12">
         <div class="card text-center mb-3" *ngIf="opportunities.length === 0">
             <div class="card-body">
@@ -64,7 +64,9 @@
     </div>
 
     <div class="card-columns">
-        <div class="card" *ngFor="let opportunity of opportunities">
+        <div class="card pointer" 
+             (click)="seeOportunity(opportunity.id)"
+             *ngFor="let opportunity of opportunities">
             <div class="card-body">
                 <h5 class="card-title">{{ opportunity.objective }}</h5>
                 <p class="card-text">

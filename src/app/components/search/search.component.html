@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row animated fadeIn">
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
@@ -51,7 +51,7 @@
 
 <div class="container" *ngIf="search">
 
-    <div class="row pt-4" *ngFor="let role of roles; let i = index">
+    <div class="row pt-4 animated fadeIn" *ngFor="let role of roles; let i = index">
         <div class="card">
             <div class="card-header">
                 {{ role }}
@@ -59,11 +59,14 @@
             <div class="card-body">
                 <div class="card-columns">
                     <div class="card text-center" *ngFor="let person of people[i].results">
-                        <img [src]="person | hasValue:'picture':'assets/img/noimage.png'" class="card-img-top img-thumb">
+                        <img [src]="person | hasValue:'picture':'assets/img/noimage.png'" class="card-img-top img-thumb img-circle">
                         <h5 class="card-title"> {{ person.name }} </h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ person.professionalHeadline }}</h6>
                         <div class="card-body">
-                            <button class="btn btn-primary">View Details</button>
+                            <button class="btn btn-primary"
+                                    (click)="seeBio(person.username)">
+                                View Details
+                            </button>
                         </div>
                     </div>
                 </div>

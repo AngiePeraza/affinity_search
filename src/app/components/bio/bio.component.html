@@ -1,1 +1,99 @@
-<p>bio works!</p>
+<div class="row animated fadeIn">
+    <div class="col-2">
+        <img [src]="bio | hasValue:'person':'' | hasValue:'pictureThumbnail':'assets/img/noimage.png'"
+            class="img-thumbnail img-circle">
+    </div>
+
+    <div class="col">
+        <h3> {{ bio | hasValue:'person':'' | hasValue:'name':'' }} </h3>
+        <h5>{{ bio | hasValue:'person':'' | hasValue:'professionalHeadline':'' }}</h5>
+    </div>
+</div>
+
+<div class="row m-5 animated fadeIn">
+    <div class="accordion" id="accordionExperiences">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                        aria-expanded="true" aria-controls="collapseOne">
+                        Experiences
+                    </button>
+                </h2>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                data-parent="#accordionExperiences">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Organization</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let experience of bio.experiences">
+                                <td> {{ experience | hasValue:'category':'' }} </td>
+                                <td><span *ngIf="experience.organizations.length > 0">
+                                    {{ experience.organizations[0].name }}</span> 
+                                </td>
+                                <td> {{ experience | hasValue:'name':'' }} </td>
+                                <td> {{ experience | hasValue:'additionalInfo':'' }} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Languages
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExperiences">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Language</th>
+                                <th>Fluency</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let language of bio.languages">
+                                <td> {{ language | hasValue:'language':'' }} </td>
+                                <td> {{ language | hasValue:'fluency':'' }} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Interests
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExperiences">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" *ngFor="let interest of bio.interests">
+                            {{ interest | hasValue:'name':'' }} 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
