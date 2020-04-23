@@ -9,27 +9,30 @@ import { TorreService } from '../../services/torre.service';
 export class HomeComponent {
 
   bio: any = {};
-  selectedStrength: string = 'Click on one of your strengths';
-  selectedLevel: string = '';
+  selectedSkill: string = 'Click on one of your strengths';
+  selectedExperience: string = '';
+  opportunities: any[] = [];
 
   constructor( private torre: TorreService ) {
     this.torre.getBio().subscribe((data: any) => {
-      console.log(data);
       this.bio = data;
     });
   }
 
   setSkill( skill: any ) {
-    this.selectedStrength = skill.textContent;
+    this.selectedSkill = skill.textContent.trim();
   }
 
-  setLevel( level: string ) {
-    this.selectedLevel = level;
+  setLevel( experience: string ) {
+    this.selectedExperience = experience;
   }
 
   searchBySkillLevel() {
-    console.log('skill: ', this.selectedStrength);
-    console.log('level: ', this.selectedLevel);
+    this.opportunities = [];
+    this.torre.searchOpportunitiesBySkill( this.selectedSkill, this.selectedExperience ).subscribe((data: any) => {
+      console.log(data);
+      this.opportunities = data.results;
+    });
   }
 
 }

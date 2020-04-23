@@ -14,6 +14,7 @@ import { HomeComponent } from './components/home/home.component';
 
 // Import Routes
 import { ROUTES } from './app.routes';
+import { NoimagePipe } from './pipes/noimage.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ROUTES } from './app.routes';
     SearchComponent,
     BioComponent,
     OpportunityComponent,
-    HomeComponent
+    HomeComponent,
+    NoimagePipe
   ],
   imports: [
     BrowserModule,

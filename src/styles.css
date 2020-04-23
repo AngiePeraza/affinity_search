@@ -26,7 +26,7 @@ hr {
 }
 
 .card-title,
-.card-text {
+.card-text, .card ul {
     color: black;
 }
 
@@ -34,7 +34,7 @@ hr {
     margin-left: 5px;
 }
 
-.badge:hover {
+.badge-primary:hover {
     -webkit-transform: scale(1.04);
     background: #0f5dae;
 }

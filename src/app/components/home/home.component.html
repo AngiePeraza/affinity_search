@@ -15,9 +15,8 @@
                     <div class="card-body">
                         <h5 class="card-title">Strengths</h5>
                         <p class="card-text">
-                            <span #skill class="badge badge-pill badge-primary pointer" 
-                                *ngFor="let strength of bio.strengths"
-                                (click)="setSkill(skill)">
+                            <span #skill class="badge badge-pill badge-primary pointer"
+                                *ngFor="let strength of bio.strengths" (click)="setSkill(skill)">
                                 {{ strength.name }}
                             </span>
                         </p>
@@ -31,28 +30,51 @@
     <div class="col-md-4">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">{{ selectedStrength }}</h5>
+                <h5 class="card-title">{{ selectedSkill }}</h5>
                 <p class="card-text">
-                    <select #level class="custom-select"
-                            (change)="setLevel($event.target.value)">
+                    <select #level class="custom-select" (change)="setLevel($event.target.value)">
                         <option selected>Choose Level</option>
                         <option value="potential-to-develop">Potential to develop</option>
                         <option value="1-plus-year">More than 1 year</option>
-                        <option value="2-plus-year">More than 2 years</option>
-                        <option value="3-plus-year">More than 3 years</option>
-                        <option value="5-plus-year">More than 5 years</option>
-                        <option value="10-plus-year">More than 10 years</option>
-                        <option value="1-less-year">Less than 1 years</option>
-                        <option value="2-less-year">Less than 2 years</option>
-                        <option value="3-less-year">Less than 3 years</option>
-                        <option value="5-less-year">Less than 5 years</option>
-                        <option value="10-less-year">Less than 10 years</option>
+                        <option value="2-plus-years">More than 2 years</option>
+                        <option value="3-plus-years">More than 3 years</option>
+                        <option value="5-plus-years">More than 5 years</option>
+                        <option value="10-plus-years">More than 10 years</option>
+                        <option value="1-less-year">Less than 1 year</option>
+                        <option value="2-less-years">Less than 2 years</option>
+                        <option value="3-less-years">Less than 3 years</option>
+                        <option value="5-less-years">Less than 5 years</option>
+                        <option value="10-less-years">Less than 10 years</option>
                     </select>
                 </p>
-                <button class="btn btn-primary"
-                        (click)="searchBySkillLevel()">
+                <button class="btn btn-primary" (click)="searchBySkillLevel()">
                     Search
                 </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card text-center mb-3" *ngIf="opportunities.length === 0">
+            <div class="card-body">
+                <h5 class="card-title">No Results</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-columns">
+        <div class="card" *ngFor="let opportunity of opportunities">
+            <div class="card-body">
+                <h5 class="card-title">{{ opportunity.objective }}</h5>
+                <p class="card-text">
+                    <span class="badge badge-pill"
+                        [ngClass]="{'badge-success': skill.name === selectedSkill, 'badge-warning': skill.name !== selectedSkill}"
+                        *ngFor="let skill of opportunity.skills">
+                        {{ skill.name }}
+                    </span>
+                </p>                
             </div>
         </div>
     </div>
