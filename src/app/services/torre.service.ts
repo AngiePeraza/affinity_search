@@ -22,8 +22,7 @@ export class TorreService {
     );
   }
 
-  searchOpportunitiesBySkill(skill: string, experience: string) {
-
+  searchOpportunitiesBySkill( skill: string, experience: string ) {
     this.searchOptions = {
       and: [
         {
@@ -37,6 +36,24 @@ export class TorreService {
 
     return this.http.post(
       `${this.corsUrl}${this.urlSearchService}opportunities/_search/?aggregate=${this.aggregate}&offset=${this.offset}&size=${this.size}`,
+      this.searchOptions
+    );
+  }
+
+  searchPeopleBySkill( skill: string, experience: string ) {
+    this.searchOptions = {
+      and: [
+        {
+          skill: {
+            term: skill,
+            experience: experience
+          }
+        }
+      ]
+    };
+
+    return this.http.post(
+      `${this.corsUrl}${this.urlSearchService}people/_search/?aggregate=${this.aggregate}&offset=${this.offset}&size=${this.size}`,
       this.searchOptions
     );
   }

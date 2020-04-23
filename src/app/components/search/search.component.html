@@ -1,1 +1,74 @@
-<p>search works!</p>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Roles</h5>
+                <p class="card-text">
+                    <select #role class="custom-select" (change)="setRoles($event)">
+                        <option selected>Choose Role</option>
+                        <option value="project management">Project Manager</option>
+                        <option value="testing">Tester</option>
+                        <option value="front end development">Fron-End Developer</option>
+                        <option value="back end development">Back-End Developer</option>
+                        <option value="web design">Web Designer</option>
+                        <option value="business analysis">Business Analyst</option>
+                    </select>
+                    <br><br>
+                    <select #level class="custom-select" (change)="setLevel($event.target.value)">
+                        <option selected>Choose Level</option>
+                        <option value="potential-to-develop">Potential to develop</option>
+                        <option value="1-plus-year">More than 1 year</option>
+                        <option value="2-plus-years">More than 2 years</option>
+                        <option value="3-plus-years">More than 3 years</option>
+                        <option value="5-plus-years">More than 5 years</option>
+                        <option value="10-plus-years">More than 10 years</option>
+                        <option value="1-less-year">Less than 1 year</option>
+                        <option value="2-less-years">Less than 2 years</option>
+                        <option value="3-less-years">Less than 3 years</option>
+                        <option value="5-less-years">Less than 5 years</option>
+                        <option value="10-less-years">Less than 10 years</option>
+                    </select>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Roles Selected</h5>
+                <p class="card-text">
+                    <span class="badge badge-pill badge-primary" *ngFor="let role of roles">
+                        {{ role }}
+                    </span>
+                </p>
+                <button class="btn btn-primary" (click)="searchPeopleBySkills()">
+                    Search My Team
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" *ngIf="search">
+
+    <div class="row pt-4" *ngFor="let role of roles; let i = index">
+        <div class="card">
+            <div class="card-header">
+                {{ role }}
+            </div>
+            <div class="card-body">
+                <div class="card-columns">
+                    <div class="card text-center" *ngFor="let person of people[i].results">
+                        <img [src]="person | hasValue:'picture':'assets/img/noimage.png'" class="card-img-top img-thumb">
+                        <h5 class="card-title"> {{ person.name }} </h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ person.professionalHeadline }}</h6>
+                        <div class="card-body">
+                            <button class="btn btn-primary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
