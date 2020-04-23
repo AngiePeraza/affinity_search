@@ -1,14 +1,15 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class TorreService {
-  private corsUrl = "https://cors-anywhere.herokuapp.com/";
-  private urlTorreService: string = "https://torre.co/api/";
-  private urlTorreBioService: string = "https://torre.bio/api/";
-  private urlSearchService: string = "https://search.torre.co/";
+  // private corsUrl = '';
+  private corsUrl = 'https://cors-anywhere.herokuapp.com/';
+  private urlTorreService: string = 'https://torre.co/api/';
+  private urlTorreBioService: string = 'https://torre.bio/api/';
+  private urlSearchService: string = 'https://search.torre.co/';
   private searchOptions: any = {};
   private aggregate = true;
   private offset = 0;
